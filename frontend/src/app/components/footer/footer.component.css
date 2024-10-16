@@ -1,0 +1,27 @@
+.container {
+    max-height: 400px;
+}
+
+footer {
+    min-height: 80px;
+    background-color: #222221;
+    padding: 20px;
+}
+
+.text {
+    line-height: 5px;
+}
+
+
+.container .social i{
+    font-weight: 50px;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    transition: all 500ms;
+}
+
+
+.container .social i :hover::before {
+    transform: scale(1.3);
+}

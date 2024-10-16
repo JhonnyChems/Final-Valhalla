@@ -1,0 +1,100 @@
+<app-menulateral></app-menulateral>
+<div id="ventana">
+    <div class="lbltitulo">
+        Modulo Productos
+        <div id="adddata">
+            <i class="fa-solid fa-paperclip"(click)="Nuevo()"></i>
+        </div>
+    </div>
+    <table class="table caption-top table-hover">
+        <caption>List of Products</caption>
+        <thead>
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of datos">
+                <tr (click)="EditarId(item._id)">
+                    <td>
+                        <img src="{{peticion.urlHost}}/Productos/{{item._id}}.png?x='{{random}}'" class="miimagenproducto">
+                    </td>
+                    <td>{{item.codigo}}</td>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.precio | currency}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.estado}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="formdatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Crear o Modificar Producto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <label for="subirimg" id="imgproducto">
+                <div id="miimagenproducto">
+                    <img src="{{peticion.urlHost}}/Productos/{{IdSeleccionado}}.png?x='{{random}}'">
+                </div>
+                <div id="subirarchivos">
+                    <input type="file" id="subirimg" style="display: none;" (change)="OpenFileSelected($event)">
+                    <button class="btn btn-primary" (click)="onUpload()">Upload</button>
+                </div>
+                </label>
+
+                
+
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="codigo" [(ngModel)]="codigo"
+                        [disabled]="IdSeleccionado != ''">
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="precio" [(ngModel)]="precio">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" [(ngModel)]="descripcion">
+                </div>
+                <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen</label>
+                    <input type="text" class="form-control" id="imagen" [(ngModel)]="imagen">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Seleccione el estado</label>
+                    <select class="form-control" id="estado" [(ngModel)]="estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="guardar()"
+                    *ngIf="IdSeleccionado == ''">Guardar</button>
+                <button type="button" class="btn btn-success" (click)="Actualizar()"
+                    *ngIf="IdSeleccionado != ''">Actualizar</button>
+                <button type="button" class="btn btn-danger" (click)="Eliminar()"
+                    *ngIf="IdSeleccionado != ''">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input [(ngModel)]="email" name="miUsername" type="text" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input [(ngModel)]="password" name="miPassword" type="password" placeholder="password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="input-box">
+                <input [(ngModel)]="confirmar" name="miPassword" type="password" placeholder="confirm Your password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="input-box">
+                <input [(ngModel)]="codigo" name="miPassword" type="codigo" placeholder="Codigo de recuperacion" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <button type="submit" class="btn" (click)="recuperar()" [disabled]="password != confirmar">Cambiar Contraseña</button>
+            <div class="register-link">
+                <p>Dont have an account? <a routerLink="/registro">Register</a></p>
+            </div>
+        </form>
+    </div>
+    </body>
+    

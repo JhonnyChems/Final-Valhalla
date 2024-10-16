@@ -1,0 +1,21 @@
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Register</h1>
+            <div class="input-box">
+                <input [(ngModel)]="nombre" name="Nombre" type="text" placeholder="Nombre" required>
+            </div>
+            <div class="input-box">
+                <input [(ngModel)]="email" name="miUsername" type="text" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <input [(ngModel)]="password" name="miPassword" type="password" placeholder="password" required>
+            </div>
+            <div class="register-link">
+                <p>Do you have an account? <a routerLink="/login">Sign Up</a></p>
+            </div>
+            <button type="submit" class="btn" (click)="Registrar()">Registrar Usuario</button>
+        </form>
+    </div>
+    </body>
+

@@ -1,0 +1,92 @@
+<app-menulateral></app-menulateral>
+<div id="ventana">
+    <div class="lbltitulo">
+        Modulo Usuarios
+        <div id="adddata">
+            <i class="fa-solid fa-user-plus" (click)="Nuevo()"></i>
+        </div>
+    </div>
+    <table class="table caption-top table-hover">
+        <caption>List of users</caption>
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of datos">
+            <tr (click)="EditarId(item._id)">
+                <td>{{item.nombre}}</td>
+                <td>{{item.email}}</td>
+                <td>
+                    <span *ngIf="item.rol == '1'">Administrador</span>
+                    <span *ngIf="item.rol == '2'">Facturador</span>
+                    <span *ngIf="item.rol == '3'">Cliente</span>
+                </td>
+                <td>
+                    <span *ngIf="item.estado == '0'">Desactivado</span>
+                    <span *ngIf="item.estado == '1'">Activado</span>
+                    <span *ngIf="item.estado == '3'">Baneado</span>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<!-- Modal -->
+    <div class="modal fade" id="formdatos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Crear o Modificar Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" [(ngModel)]="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="text" class="form-control" id="email" [(ngModel)]="email" [disabled]="IdSeleccionado != ''">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label" [hidden]="IdSeleccionado != ''">Password</label>
+                        <input type="password" class="form-control" id="password"[(ngModel)]="password" [hidden]="IdSeleccionado != ''">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione el estado</label>
+                        <select class="form-control" id="estado" [(ngModel)]="estado">
+                            <option value="0">Desactivado</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Baneado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Seleccione el Rol</label>
+                        <select class="form-control" id="rol" [(ngModel)]="rol">
+                            <option value="1">Administrador</option>
+                            <option value="2">Facturador</option>
+                            <option value="3">Cliente</option>
+                        </select>
+                    </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="guardar()" *ngIf="IdSeleccionado == ''">Guardar</button>
+                <button type="button" class="btn btn-success" (click)="Actualizar()" *ngIf="IdSeleccionado != ''">Actualizar</button>
+                <button type="button" class="btn btn-danger" (click)="Eliminar()" *ngIf="IdSeleccionado != ''">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

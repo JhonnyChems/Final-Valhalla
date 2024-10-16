@@ -1,0 +1,33 @@
+<div id="zonasuperior"> 
+    <div *ngIf="ultimologin" id="ultimologueo">
+        Último Logueo: {{ ultimologin ? (ultimologin | date: 'dd/MM/yyyy HH:mm:ss') : 'Sin fecha' }}
+    </div>
+</div>
+<div class="zonalateral">
+    <div id="logoempresa">
+        <img src="../../../assets/imagenes/valknut-7956-removebg-preview.png" alt="">
+    </div>
+
+    <div id="datosusuario">
+        <label for="subiravatar" style="float: left;" class="avatar-label">
+            <img src="{{peticion.urlHost}}/Avatar/{{_id}}.png?x='{{random}}'">
+            <i class="fa-solid fa-camera"></i>
+        </label>
+        
+        <input type="file" id="subiravatar" style="display: none;" (change)="OpenFileSelected($event)">
+
+        <div class="lblnombre">{{nombre}}</div>
+        <div class="lblrol">{{rol}}</div>
+    </div>
+
+    <div id="opciones">
+        <div class="itemmenu" routerLink = "/dashboard">Dashboard</div>
+        <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/usuarios">Usuarios</div>
+        <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/productos">Productos</div>
+        <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/servicios">Servicios</div>
+        <div *ngIf="rol == 'Administrador' || rol == 'Facturador'" class="itemmenu" routerLink = "/servicios">Facturacion</div>
+        <div class="itemmenu" (click)="logout()" routerLink = "/login">logout</div>
+    </div>
+
+
+</div>

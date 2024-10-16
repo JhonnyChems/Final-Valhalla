@@ -1,0 +1,74 @@
+body{
+    background: #070404f8;
+}
+
+.section-padding {
+    padding: 70px 0;
+}
+
+.row .about-img{
+    padding-right: 100px;
+}
+
+.container-coffe .row {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+p.lead{
+    flex-grow: 1;
+    font-size: 1rem; /* Tamaño relativo */
+    line-height: 1.2; /* Espaciado entre líneas */
+}
+
+.carousel-item {
+    height: 80vh;
+    min-height: 300px;
+}
+.carousel-caption {
+    bottom: 200px;
+    z-index: 2;
+}
+
+.carousel-caption h5{
+    font-size: 45px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+
+.carousel-caption p {
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+.carousel-inner::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 30, 82, 0.327);
+    z-index: 1;
+}
+
+.services{
+    margin-top: 15px;
+}
+
+.services .card-body i {
+    font-size: 50px;
+}
+
+.services .card-body{
+    width: 100%;
+    height: 310px;
+}
+
+.section-header{
+    margin-top: 50px;
+}

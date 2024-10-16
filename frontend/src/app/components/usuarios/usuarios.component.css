@@ -1,0 +1,7 @@
+div#ventana {
+    width: calc(100% - 200px);
+    position: absolute;
+    top: 40px;
+    padding-left: 7px;
+    left: 200px;
+}
