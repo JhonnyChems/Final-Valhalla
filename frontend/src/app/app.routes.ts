@@ -10,6 +10,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 export const routes: Routes = [
     {
@@ -51,6 +53,16 @@ export const routes: Routes = [
         path: "dashboard",
         component: DashboardComponent,
         title: "Dashboard"
+    },
+    {
+        path: "inicio",
+        component: InicioComponent,
+        title: "Inicio"
+    },
+    {
+        path: "carrito",
+        component: CarritoComponent,
+        title: "Carrito"
     },
     {
         path: "servicios",

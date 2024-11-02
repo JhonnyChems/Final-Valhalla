@@ -9,9 +9,10 @@ productosController.guardar = function (request, response){
     var post = {
         nombre: request.body.nombre,
         codigo: request.body.codigo,
-        precio:request.body.codigo,
+        precio:request.body.precio,
         descripcion: request.body.descripcion,
         imagen: request.body.imagen,
+        tipo: request.body.tipo,
         estado:request.body.estado
     }
 
@@ -32,6 +33,11 @@ productosController.guardar = function (request, response){
 
     if(post.descripcion == undefined || post.descripcion == null || post.descripcion == ""){
         response.json({state:false, mensaje: "El campo descripcion es obligatorio"})
+        return false
+    }
+
+    if(post.tipo == undefined || post.tipo == null || post.tipo == ""){
+        response.json({state:false, mensaje: "El campo tipo es obligatorio"})
         return false
     }
 
@@ -87,7 +93,9 @@ productosController.actualizar = function (request, response) {
         nombre: request.body.nombre,
         precio: request.body.precio,
         descripcion: request.body.descripcion,
-        imagen: request.body.imagen
+        imagen: request.body.imagen,
+        estado: request.body.estado,
+        tipo: request.body.tipo
     }
 
     if(post.nombre == undefined || post.nombre == null || post.nombre == ""){

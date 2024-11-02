@@ -10,7 +10,9 @@ var productosSchema = new Schema({
     precio: Number,
     descripcion: String,
     imagen: String,
-    estado: Number
+    tipo:String,
+    tipo: String,
+    estado: Number,
 }) 
 
 
@@ -26,8 +28,9 @@ productosModel.guardar = function (post, callback){
     instancia.precio = parseInt(post.precio)
     instancia.descripcion = post.descripcion
     instancia.estado = post.estado
+    instancia.tipo = post.tipo
     if(post.imagen == undefined || post.imagen == null || post.imagen == ""){
-        instancia.imagen = "assets/default.jpg"
+        instancia.imagen = "frontend/src/assets/default.jpg"
     }
     else{
         instancia.imagen = post.imagen
@@ -98,11 +101,12 @@ productosModel.actualizar = function(post, callback){
             precio: post.precio,
             descripcion: post.descripcion,
             imagen:post.imagen,
+            tipo: post.tipo,
             estado:post.estado
         }).then((respuesta) =>{
-            return callback({state:true, mesnaje: "Elemento Actualizado"})
+            return callback({state:true, mensaje: "Elemento Actualizado"})
         }).catch((error) => {
-            return callback({state:false, mesnaje: "Error al Actualizar", error:error})
+            return callback({state:false, mensaje: "Error al Actualizar", error:error})
         })
 }
 

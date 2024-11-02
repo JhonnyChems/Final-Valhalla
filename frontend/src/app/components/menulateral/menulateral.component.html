@@ -22,6 +22,7 @@
 
     <div id="opciones">
         <div class="itemmenu" routerLink = "/dashboard">Dashboard</div>
+        <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/inicio">Inicio</div>
         <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/usuarios">Usuarios</div>
         <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/productos">Productos</div>
         <div *ngIf="rol == 'Administrador'" class="itemmenu" routerLink = "/servicios">Servicios</div>

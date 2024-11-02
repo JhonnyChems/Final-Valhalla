@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require("cors")
 global.config = require('./config.js').config
 
+
 var bodyParser = require('body-parser')
 const { config } = require("./config.js")
 app.use(bodyParser.json())
@@ -11,6 +12,8 @@ app.use(bodyParser.urlencoded({extended:true  }))
 global.SHA256 = require ('sha256')
 const session = require ('express-session')
 const cookieParser = require ('cookie-parser')
+global.json2xls = require('json2xls')
+global.fs = require ('fs')
 
 global.path = require('path')
 global.AppRoot = path.resolve(__dirname)

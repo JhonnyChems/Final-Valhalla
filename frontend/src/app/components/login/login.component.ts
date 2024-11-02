@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit{
   constructor(private peticion: PeticionService, private router:Router){}
   email: any = ""
   password: string = ""
+  rol: string = ""
   recordar: boolean = true
 
 
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit{
       Path:"/usuarios/login",
       Payload:{
         email:this.email,
-        password:this.password
+        password:this.password,
+        rol:this.rol
       }
     }
 
@@ -57,12 +59,22 @@ export class LoginComponent implements OnInit{
             localStorage.setItem("email", "")
           }
 
-          this.router.navigate(["dashboard"])
+          if(res.rol == "1" || res.rol == "2"){
+            this.router.navigate(["dashboard"])
           Swal.fire({
             icon: "success",
             text: res.mensaje,
             title: "Que bien",
           });
+          }
+          else{
+            this.router.navigate(["inicio"])
+          Swal.fire({
+            icon: "success",
+            text: res.mensaje,
+            title: "Que bien",
+          });
+          }
         }
     })
   }

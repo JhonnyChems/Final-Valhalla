@@ -91,6 +91,17 @@ app.post('/logout', function(request, response){
     response.json({state:true, mensaje: "Se ha cerrado su sesion correctamente"})
 })
 
+//Exportar Exel
+
+app.get('/usuarios/ExportarExel', function(request, response){
+    usuariosController.ExportarExel(request, response)
+})
+
+//Exportar PDF
+
+app.get('/usuarios/ExportarPDF', function(request, response){
+    usuariosController.ExportarPDF(request, response)
+})
 
 // <------------------------------//Productos------------------------------------->
 
@@ -187,4 +198,43 @@ app.post('/subirProductos/:nombre', function(request, response){
 
 app.post('/subirAvatar/:nombre', function(request, response){
     archivosController.subirAvatar(request, response)
+})
+
+
+// <------------------------------ Carrito --------------------------->
+
+
+var carritoController = require('./Api/controlador/carritoController.js').carritoController
+
+
+// Guardar
+
+
+app.post('/carrito/guardar', function(request, response){
+    carritoController.guardar(request, response)
+})
+
+
+//listar
+
+app.post('/carrito/listar', function(request, response){
+    carritoController.listar(request, response)
+})
+
+//ListarId
+
+app.post('/carrito/listarId', function(request, response){
+    carritoController.listarId(request, response)
+})
+
+//Actualizar
+
+app.post('/carrito/actualizar', function(request, response){
+    carritoController.actualizar(request, response)
+})
+
+//Eliminar
+
+app.post('/carrito/eliminar', function(request, response){
+    carritoController.eliminar(request, response)
 })

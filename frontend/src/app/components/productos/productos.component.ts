@@ -25,6 +25,7 @@ export class ProductosComponent {
   descripcion: string = ""
   imagen:string = ""
   estado: string = "0"
+  tipo: string = ""
   IdSeleccionado:string = ""
   random:number = 0
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class ProductosComponent {
     this.descripcion = ""
     this.imagen = ""
     this.estado = "0"
+    this.tipo = ""
     this.IdSeleccionado = ""
   }
 
@@ -68,6 +70,7 @@ export class ProductosComponent {
         precio: this.precio,
         imagen:this.imagen,
         descripcion: this.descripcion,
+        tipo:this.tipo,
         estado:this.estado
       }
     }
@@ -128,7 +131,8 @@ export class ProductosComponent {
       precio: this.precio,
       descripcion: this.descripcion,
       imagen: this.imagen,
-      estado: this.imagen,
+      estado: this.estado,
+      tipo: this.tipo,
       _id:this.IdSeleccionado
       }
     }

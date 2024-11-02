@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PeticionService } from '../../servicios/peticion.service';
 
 
@@ -14,7 +14,7 @@ declare var Swal: any
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
-  constructor(private peticion: PeticionService){}
+  constructor(private peticion: PeticionService, private router:Router){}
 
   nombre: string = ""
   email: string = ""
@@ -41,10 +41,13 @@ export class RegistroComponent {
           });
         }
         else{
+          this.router.navigate(["login"])
           Swal.fire({
             icon: "success",
             title: "Usuario registrado, por favor verifica tu correo electronico para Activar tu cuenta",
+            
           });
+        
         }
       })
   }

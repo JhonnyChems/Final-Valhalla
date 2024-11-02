@@ -1,0 +1,120 @@
+<header>
+    <div class="container-hero">
+        <div class="container hero">
+            <div class="custumer-support">
+                <i class="fa-solid fa-headset"></i>
+                <div class="content-customer-support">
+                    <span class="text">Soporte al cliente</span>
+                    <span class="number">123-456-7890</span>
+                </div>
+            </div>
+            <div class="container-logo">
+                <img id="logo" src="../../../assets/imagenes/valknut-7956-removebg-preview.png">
+                <!-- <i class="fa-solid fa-mug-hot"></i> -->
+                <h1 class="Logo">Valhalla Coffe</h1>
+            </div>
+
+            <div class="container-user">
+                <div id="datosusuario">
+                    <label for="subiravatar" style="float: left;" class="avatar-label">
+                        <img src="{{peticion.urlHost}}/Avatar/{{_id}}.png?x='{{random}}'">
+                        <i class="fa-solid fa-camera" (click)="Menu()"></i>
+                    </label>
+
+                    <div class="lblnombre">{{nombre}}</div>
+                    <div class="lblrol">{{rol}}
+                        <div class="dropdown">
+                            <i class="fa-solid fa-caret-down dropbtn"></i>
+                            <div class="dropdown-content">
+                                <a *ngIf="rol == 'Administrador'" routerLink="/dashboard">Dashboard</a>
+                                <a routerLink="/inicio">Inicio</a>
+                                <a (click)="logout()" routerLink="/login">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-navbar">
+        <nav class="navbar container">
+            <i class="fa-solid fa-bars"></i>
+            <ul class="menu">
+                <li><a routerLink="/inicio">Inicio</a></li>
+                <li><a href="#">Moca Helado</a></li>
+                <li><a href="#">Expreso</a></li>
+                <li><a href="#">Capuchino</a></li>
+                <li><a href="#">Mas</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+
+            <form class="search-form">
+                <input type="search" placeholder="Buscar...">
+                <button class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+        </nav>
+    </div>
+</header>
+<div class="row">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="d-none d-sm-none d-md-block">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of carrito.datoscarrito">
+            <tr (click)="AbrirModal(item.cantidad, item._id)">
+                <th class="d-none d-sm-none d-md-block">
+                    <img class="miimagencarrito" src="{{peticion.urlHost}}/Productos/{{item._idProducto}}.png">
+                </th>
+                <td>{{item.nombre}}</td>
+                <td>{{item.precio | currency}}</td>
+                <td>{{item.cantidad}}</td>
+                <td>{{item.precio * item.cantidad | currency}}</td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="editProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center"> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar la cantidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Modificar Cantidad</label>
+                        <input type="text" class="form-control" id="cantidad" [(ngModel)]="cantidad">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="Actualizar()">Actualizar</button>
+                    <button type="button" class="btn btn-danger" (click)="Eliminar()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8"></div>
+        <div class="col-12 col-md-4 ">
+            <div class="total">Total: {{carrito.total | currency}}</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<app-footer></app-footer>

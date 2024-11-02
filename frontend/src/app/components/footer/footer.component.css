@@ -1,27 +1,133 @@
-.container {
-    max-height: 400px;
+.footer {
+    background-color: #3e2c2a; 
+    color: #f3e0c7; 
+    padding: 15px 0; 
+    text-align: center;
+    font-size: 14px;
 }
 
-footer {
-    min-height: 80px;
-    background-color: #222221;
-    padding: 20px;
+.container-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.text {
-    line-height: 5px;
+/* Menú del footer */
+.menu-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 }
 
-
-.container .social i{
-    font-weight: 50px;
-    text-decoration: none;
-    color: white;
-    padding: 5px;
-    transition: all 500ms;
+.menu-footer div {
+    flex: 1 1 200px; 
+    margin: 10px 0;
+    text-align: left;
 }
 
+/* Títulos */
+.title-footer {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #d4a373; 
+}
 
-.container .social i :hover::before {
-    transform: scale(1.3);
+/* Enlaces */
+ul li a {
+    color: #f3e0c7; 
+    font-size: 14px;
+}
+
+ul li a:hover {
+    color: #d4a373; 
+    transition: color 0.3s ease;
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-icons span {
+    background-color: #6b4f4f; 
+    padding: 10px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.social-icons span i {
+    color: #f3e0c7;
+}
+
+/* Hovers para redes sociales con estilo cafetería */
+.facebook:hover {
+    background-color: #8b5d33; 
+}
+
+.twitter:hover {
+    background-color: #b37647; 
+}
+
+.youtube:hover {
+    background-color: #aa4a30; 
+}
+
+.pinterest:hover {
+    background-color: #c66a50; 
+}
+
+.instagram:hover {
+    background: linear-gradient(
+        #4d302b, 
+        #b76f47, 
+        #c4a484 
+    );
+}
+
+/* Boletín informativo */
+.newsletter input[type="email"] {
+    padding: 8px;
+    width: 70%;
+    border: 1px solid #d4a373;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f3e0c7;
+    color: #3e2c2a;
+}
+
+.newsletter button {
+    padding: 8px 15px;
+    background-color: #d4a373;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #3e2c2a;
+    font-weight: bold;
+}
+
+.newsletter button:hover {
+    background-color: #c2936d; /* Un marrón más oscuro */
+    transition: background-color 0.3s ease;
+}
+
+/* Copyright */
+.copyright {
+    margin-top: 15px;
+    border-top: 1px solid #6b4f4f;
+    padding-top: 10px;
+    font-size: 12px;
+    color: #f3e0c7;
 }

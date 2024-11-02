@@ -1,0 +1,245 @@
+<header>
+    <div class="container-hero">
+        <div class="container hero">
+            <div class="custumer-support">
+                <i class="fa-solid fa-headset"></i>
+                <div class="content-customer-support">
+                    <span class="text">Soporte al cliente</span>
+                    <span class="number">123-456-7890</span>
+                </div>
+            </div>
+            <div class="container-logo">
+                <img id="logo" src="../../../assets/imagenes/valknut-7956-removebg-preview.png">
+                <!-- <i class="fa-solid fa-mug-hot"></i> -->
+                <h1 class="Logo">Valhalla Coffe</h1>
+            </div>
+
+            <div class="container-user">
+                <div id="datosusuario">
+                    <label for="subiravatar" style="float: left;" class="avatar-label">
+                        <img src="{{peticion.urlHost}}/Avatar/{{_id}}.png?x='{{random}}'">
+                        <i class="fa-solid fa-camera" (click)="Menu()"></i>
+                    </label>
+
+                    <div class="lblnombre">{{nombre}}</div>
+                    <div class="lblrol">{{rol}}
+                        <div class="dropdown">
+                            <i class="fa-solid fa-caret-down dropbtn" id="dropbtn"></i>
+                            <div class="dropdown-content">
+                                <a *ngIf="rol == 'Administrador'"  routerLink="/dashboard">Dashboard</a>
+                                <a (click)="logout()" routerLink="/login">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <input type="file" id="subiravatar" style="display: none;" (change)="OpenFileSelected($event)">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-navbar">
+        <nav class="navbar container">
+            <i class="fa-solid fa-bars"></i>
+            <ul class="menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Moca Helado</a></li>
+                <li><a href="#">Expreso</a></li>
+                <li><a href="#">Capuchino</a></li>
+                <li><a href="#">Mas</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+
+            <form class="search-form">
+                <input type="search" placeholder="Buscar...">
+                <button class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div id="carrito" routerLink="/carrito">
+                <i class="fa-solid fa-cart-shopping"></i> Carrito <span class="badge badge-light">{{carrito.datoscarrito.length}}
+
+                </span>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+<section class="banner">
+    <div class="content-banner">
+        <p>Cafe Delicioso</p>
+        <h2>100% Natural <br>Cafe Fresco</h2>
+        <a href="#">Comprar ahora</a>
+    </div>
+</section>
+
+<main class="main-content">
+    <section class="container container-features">
+        <div class="card-features">
+            <i class="fa-solid fa-plane-up"></i>
+            <div class="feature-content">
+                <span>Envio gratuito a nivel mundial</span>
+                <p>Pedido superior a $150 USD</p>
+            </div>
+        </div>
+        <div class="card-features">
+            <i class="fa-solid fa-wallet"></i>
+            <div class="feature-content">
+                <span>Reembolso</span>
+                <p>100% Garantia de devolucion de dinero</p>
+            </div>
+        </div>
+        <div class="card-features">
+            <i class="fa-solid fa-gift"></i>
+            <div class="feature-content">
+                <span>Tarjeta de regalo</span>
+                <p>Ofrece tarjetas de regalo a quines amas</p>
+            </div>
+        </div>
+        <div class="card-features">
+            <i class="fa-solid fa-headset"></i>
+            <div class="feature-content">
+                <span>Servicio al cliente 24/7</span>
+                <p>Llamanos 24/7 al 123-456-7890</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container top-products">
+        <h2 class="headding-1">Mejores Productos (Producto Preparado)</h2>
+    
+        <div class="container-options">
+            <span>Destacados</span>
+            <span>Recientes</span>
+            <span>Mas vendidos</span>
+        </div>
+    
+        <!-- Sección para productos de tipo 0 -->
+        <div class="container-products">
+            <ng-container *ngFor="let item of datos">
+                <div class="products" *ngIf="item.tipo === '0'">
+                    <div class="product">
+                        <h2 class="lblnombre">{{item.nombre}}</h2>
+                        <img src="{{peticion.urlHost}}/Productos/{{item._id}}.png">
+        
+                        <div class="button-group">
+                            <span><i class="fa-regular fa-heart"></i></span>
+                            <span><i class="fa-solid fa-share"></i></span>
+                            <span><i class="fa-regular fa-eye"></i></span>
+                        </div>
+                        <p>{{item.precio | currency}}</p>
+                        <button class="Comprar" (click)="Agregar(item)">Agregar +1</button>
+                    </div>
+                </div>
+            </ng-container>
+            
+        </div>
+    </section>
+    
+    <h2 class="headding-1">Arte en Café</h2>
+    
+    <section class="container top-Marcas">
+        <img src="../../../assets/imagenesCol/im1.jpg">
+        <img src="../../../assets/imagenesCol/im4.jpg">
+        <img src="../../../assets/imagenesCol/im5.jpg">
+        <img src="../../../assets/imagenesCol/img2.png">
+        <img src="../../../assets/imagenesCol/coffe8.avif">
+        <img src="../../../assets/imagenesCol/cofea.jpg">
+        <img src="../../../assets/imagenesCol/img6.avif">
+        <img src="../../../assets/imagenesCol/coffeb.jpg">
+        <img src="../../../assets/imagenesCol/coffec.jpg">
+    </section>
+    
+    <section class="container top-products">
+        <h2 class="headding-1">Mejores Productos (Cafe en grano)</h2>
+    
+        <div class="container-options">
+            <span>Destacados</span>
+            <span>Recientes</span>
+            <span>Mas vendidos</span>
+        </div>
+    
+        <!-- Sección para productos de tipo 1 -->
+        <div class="container-products">
+            <ng-container  *ngFor="let item of datos">
+                <div class="products" *ngIf="item.tipo === '1'">
+                    <div class="product">
+                        <h2 class="lblnombre">{{item.nombre}}</h2>
+                        <img src="{{peticion.urlHost}}/Productos/{{item._id}}.png">
+                        <div class="button-group">
+                            <span><i class="fa-regular fa-heart"></i></span>
+                            <span><i class="fa-solid fa-share"></i></span>
+                            <span><i class="fa-regular fa-eye"></i></span>
+                        </div>
+                        <p>{{item.precio | currency}}</p>
+                        <button class="Comprar" (click)="Agregar(item)">Agregar +1</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+    
+</main>
+
+<footer class="footer">
+    <div class="container container-footer">
+        <div class="menu-footer">
+            <div class="contact-info">
+                <p class="title-footer">Informacion de contacto</p>
+                <ul>
+                    <li>Direccion: </li>
+                    <li>Telefono: 123-456-7890</li>
+                    <li>Fax:5555555300</li>
+                    <li>Email: <a href="mailto:valhalla@support.com">valhalla&#64;support.com</a></li>
+                </ul>
+                <div class="social-icons">
+                    <span class="facebook"><i class="fa-brands fa-facebook"></i></span>
+                    <span class="instagram"><i class="fa-brands fa-instagram"></i></span>
+                    <span class="twitter"><i class="fa-brands fa-twitter"></i></span>
+                    <a href="https://github.com/JhonnyChems" target="_blank"><span class="github"><i class="fa-brands fa-github"></i></span></a>
+                    <span class="pinterest"><i class="fa-brands fa-pinterest"></i></span>
+                </div>
+            </div>
+            <div class="information">
+                <p class="title-footer">Informacion</p>
+                <ul>
+                    <li><a href="#">Acerca de Nosotros</a></li>
+                    <li><a href="#">Informacion Delivery</a></li>
+                    <li><a href="#">Politicas de Privacidad</a></li>
+                    <li><a href="#">Terminos y condiciones</a></li>
+                    <li><a href="#">Contactanos</a></li>
+                </ul>
+            </div>
+
+            <div class="my-account">
+                <p class="title-footer">Mi cuenta</p>
+                <ul>
+                    <li><a href="#">Mi cuenta</a></li>
+                    <li><a href="#">Historial de ordenes</a></li>
+                    <li><a href="#">Lista de deseos</a></li>
+                    <li><a href="#">Reembolsos</a></li>
+                </ul>
+            </div>
+
+            <div class="newsletter">
+                <p class="title-footer">Boletin informativo</p>
+                <div class="content">
+                    <p>
+                        Suscribete ahora a nuestros boletines, mantenete al dia con nuestras colecciones, y ofertas
+                        exclusivas
+                    </p>
+                    <input type="email" placeholder="Ingresa el correo aqui">
+                    <button>Suscribete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>
+                Desarrollado por JhonnyDev &copy;
+            </p>
+        </div>
+    </div>
+</footer>

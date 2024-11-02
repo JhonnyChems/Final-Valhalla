@@ -276,7 +276,7 @@ usuariosController.Activar = function (request, response) {
     <div style="background: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); max-width: 400px; margin: auto;">
         <h1 style="color: #7a5c4c;">¡Cuenta Activada!</h1>
         <p style="font-size: 18px;">Tu cuenta ha sido activada exitosamente. Ahora puedes disfrutar de nuestros deliciosos servicios de cafetería.</p>
-        <a href="#" style="display: inline-block; padding: 10px 20px; margin-top: 20px; background-color: #7a5c4c; color: white; text-decoration: none; border-radius: 5px;">Iniciar Sesión</a>
+        <a herf="http://localhost:4200/login" style="display: inline-block; padding: 10px 20px; margin-top: 20px; background-color: #7a5c4c; color: white; cursor:pointer; text-decoration: none; border-radius: 5px;">Iniciar Sesión</a>
     </div>
 
 </div>`)
@@ -360,8 +360,7 @@ usuariosController.login = function (request, response){
                     request.session.ultimologin = respuesta.data[0].ultlogin
                     request.session.rol = respuesta.data[0].rol
 
-                    response.json({state: true, mensaje: "Bienvenido: " + respuesta.data[0].nombre})
-
+                    response.json({state: true, mensaje: "Bienvenido: " + respuesta.data[0].nombre, rol: respuesta.data[0].rol})
                 }
                 
             })
@@ -506,6 +505,76 @@ usuariosController.recuperarpass = function (request, response) {
     })
 
 
+
+}
+
+usuariosController.ExportarExel = function (request, response){
+
+    usuariosModel.listar(null, function(respuesta){
+
+
+    var random = Math.floor(Math.random() * (9999 - 1000) + 1000);
+
+        const dataToExport = respuesta.datos.map(doc => doc._doc)
+        var xls = json2xls(dataToExport)
+        fs.writeFileSync('misusuarios'+random+'.xls', xls, 'binary')
+        response.download('misusuarios'+random+'.xls', function(err){
+            if(err){
+                console.log(err)
+            }
+            else{
+                console.log('Descarga completa')
+                fs.unlinkSync('misusuarios'+random+'.xls')
+            }
+        })
+
+
+
+    })
+}
+
+usuariosController.ExportarPDF = function (request, response){
+
+    const PDFDocument = require('pdfkit')
+    const doc = new PDFDocument();
+    var writeStream = fs.createWriteStream('Informe.pdf')
+    doc.pipe(writeStream)
+
+    //titulo
+    doc.fontSize(14).text("Lista Usuarios", 240, 70)
+
+    doc.fontSize(14).text("Nombre", 50, 95)
+    doc.fontSize(14).text("Email", 220, 95)
+
+    usuariosModel.listar(null, function(respuesta){
+
+        for (let a = 0; a < respuesta.datos.length; a++) {
+            
+            doc.fontSize(10).text(respuesta.datos[a].nombre, 50, 110 + (a*11))
+            doc.fontSize(10).text(respuesta.datos[a].email, 220, 110 + (a*11))
+
+            if(a == 20){
+                doc.addPage()
+            }
+
+            if(a == respuesta.datos.length -1){
+                doc.end()
+            }
+            
+        }
+    })
+
+    writeStream.on('finish', function(){
+        response.download('Informe.pdf', function(err){
+            if(err){
+                console.log(err)
+            }
+            else{
+                console.log('Descarga completa')
+                fs.unlinkSync('Informe.pdf')
+            }
+        })
+    })
 
 }
 
